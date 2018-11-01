@@ -1,0 +1,113 @@
+﻿生成启动时间为 2018/3/16 19:10:27。
+     1>项目“E:\fangtian\最后方案SBN\Bayesian\Bayesian\Bayesian.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SparseBN.cpp
+         SparseBN.cpp
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(19): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(19): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(19): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(20): error C2065: “deque”: 未声明的标识符
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(20): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(27): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(13): error C2872: “vector”: 不明确的符号
+                 可能是“e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : int vector”
+                 或       “c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(650) : std::vector”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(13): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(13): error C2976: “std::deque”: 模板 参数太少
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\deque(920) : 参见“std::deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(13): error C2143: 语法错误 : 缺少“;”(在“>”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(13): error C2059: 语法错误:“>”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(14): error C2872: “vector”: 不明确的符号
+                 可能是“e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : int vector”
+                 或       “c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(650) : std::vector”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(14): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2872: “vector”: 不明确的符号
+                 可能是“e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : int vector”
+                 或       “c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(650) : std::vector”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2976: “std::deque”: 模板 参数太少
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\deque(920) : 参见“std::deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2143: 语法错误 : 缺少“)”(在“>”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2059: 语法错误:“>”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(16): error C2059: 语法错误:“)”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2872: “vector”: 不明确的符号
+                 可能是“e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : int vector”
+                 或       “c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(650) : std::vector”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2976: “std::deque”: 模板 参数太少
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\deque(920) : 参见“std::deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2143: 语法错误 : 缺少“)”(在“>”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2059: 语法错误:“>”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2530: “rawX”: 必须初始化引用
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\deque(920) : 参见“std::deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2143: 语法错误 : 缺少“;”(在“>”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17): error C2059: 语法错误:“)”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18): error C2872: “vector”: 不明确的符号
+                 可能是“e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.h(17) : int vector”
+                 或       “c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(650) : std::vector”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(19): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(20): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(21): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(21): error C2143: 语法错误 : 缺少“,”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(22): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(23): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(23): error C2143: 语法错误 : 缺少“,”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(24): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(24): error C2143: 语法错误 : 缺少“,”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(25): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(25): error C2143: 语法错误 : 缺少“,”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(26): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(26): error C2143: 语法错误 : 缺少“,”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(17): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(17): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(17): error C2086: “int deque”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17) : 参见“deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(18): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(18): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(18): error C2086: “int deque”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(17) : 参见“deque”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(19): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(19): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(19): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(20): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(20): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(20): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(21): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(21): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(21): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(22): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(22): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(22): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(51): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(51): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(51): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(51): error C2143: 语法错误 : 缺少“;”(在“{”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(51): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(97): error C2143: 语法错误 : 缺少“;”(在“<”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(97): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(97): error C2086: “int vector”: 重定义
+                 e:\fangtian\最后方案sbn\bayesian\bayesian\utils.h(18) : 参见“vector”的声明
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(98): error C2143: 语法错误 : 缺少“;”(在“{”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(98): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(107): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(108): error C2143: 语法错误 : 缺少“;”(在“{”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(108): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(275): error C2062: 意外的类型“double”
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(276): error C2143: 语法错误 : 缺少“;”(在“{”的前面)
+     1>e:\fangtian\最后方案sbn\bayesian\bayesian\sparsebn.cpp(276): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+     1>已完成生成项目“E:\fangtian\最后方案SBN\Bayesian\Bayesian\Bayesian.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.89
