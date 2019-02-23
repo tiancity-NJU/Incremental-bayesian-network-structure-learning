@@ -4,9 +4,7 @@
 #include"batchSparseBN.h"
 #include<map>
 #include <iomanip>
-
 using namespace std;
-
 
 map<double, double> loadMap(const char* filename)
 {
@@ -18,29 +16,24 @@ map<double, double> loadMap(const char* filename)
 
 	string lineStr;
 	map<double, double> strMap;
-	while (getline(inFile, lineStr))	//ÒÔĞĞÎªµ¥Î»¶ÁÈëlineStr
+	while (getline(inFile, lineStr))	//ä»¥è¡Œä¸ºå•ä½è¯»å…¥lineStr
 	{
 		stringstream ss(lineStr);
 		string key, value;
-		getline(ss, key, ':');	//ÒÔ£¬Îª·Ö¸î¶ÁssÈëstr
+		getline(ss, key, ':');	//ä»¥ï¼Œä¸ºåˆ†å‰²è¯»sså…¥str
 		getline(ss, value);
 		strMap[S2D(key)] = S2D(value);
 	}
 	return strMap;
 }
 
-
-
-
 int main(){
-
 	
-	//cout << "¶ÁÈ¡Ê±¼ä..." << ((double)end - (double)start)/1000<< endl;
+	//cout << "è¯»å–æ—¶é—´..." << ((double)end - (double)start)/1000<< endl;
 	
-	//SBN("E:\\fangtian\\S410039\\DataDim57-new.csv", 56, 2, 0.1);     //³õÊ¼»¯£¬²¢ÇÒÌø¹ıcsvµÄµÚÒ»ĞĞºÍµÚÒ»ÁĞ£¨Ò»¸öÊÇÌØÕ÷Ãû£¬Ò»¸öÊÇÈÕÆÚ£©
+	//SBN("E:\\fangtian\\S410039\\DataDim57-new.csv", 56, 2, 0.1);     //åˆå§‹åŒ–ï¼Œå¹¶ä¸”è·³è¿‡csvçš„ç¬¬ä¸€è¡Œå’Œç¬¬ä¸€åˆ—ï¼ˆä¸€ä¸ªæ˜¯ç‰¹å¾åï¼Œä¸€ä¸ªæ˜¯æ—¥æœŸï¼‰
 
 	/*    SBN(path,dim,penalty,ralationthreshold)       */
-
 
 	string path;
 	int dims=0;
@@ -56,9 +49,9 @@ int main(){
 	cin >> penalty;
 	cout << "relation threshold: ";
 	cin >> relation;
-	cout << "param matrix save path:(such as£ºE:\\param.txt)";
+	cout << "param matrix save path:(such asï¼šE:\\param.txt)";
 	cin >> param_txt;
-	cout << "sigma2 save path:(such as£ºE:\\sigma2.txt)";
+	cout << "sigma2 save path:(such asï¼šE:\\sigma2.txt)";
 	cin >> sigma2_txt;
 	cout << "edge save path:(such as: E:\\edge.txt)";
 	cin >> edge_txt;
@@ -112,21 +105,17 @@ int main(){
 			MatrixB << "\n";
 	}
 
-
-
 	for (int i = 0; i < sigma2.size()-1; i++)
 	{
 		Sigma << sigma2[i] << ",";
 	}
 	Sigma << sigma2[sigma2.size() - 1];
 
-
-
 	for (int i = 0; i < dim; i++)
 	{
 		for (int j = 0; j < dim; j++)
 		{
-			if (DAG[i][j] == 1)			// print('´æÔÚ±ß ', i + 1, j + 1)
+			if (DAG[i][j] == 1)			// print('å­˜åœ¨è¾¹ ', i + 1, j + 1)
 				Edge << "G(" << i + 1 << ")" << "(" << j + 1 << ")" << "= 1" << endl;
 		}
 	}
@@ -134,27 +123,27 @@ int main(){
 	Sigma.close();
 	Edge.close();
 
-	cout << "**********************************Í³¼Æ½á¹ûÎª*******************************" << endl;
+	cout << "**********************************ç»Ÿè®¡ç»“æœä¸º*******************************" << endl;
 	cout << "node: " << dim << "edge: " << edge << endl;
-	cout << "¼üÈëÈÎÒâÊı×ÖÖÕÖ¹......" << endl;
+	cout << "é”®å…¥ä»»æ„æ•°å­—ç»ˆæ­¢......" << endl;
 	int tmp;
 	cin >> tmp;
 
 	/**
-	cout << "ÊäÈëÈÎÒâÊı×Ö½øÈëÍÆ¶Ï" << endl;
+	cout << "è¾“å…¥ä»»æ„æ•°å­—è¿›å…¥æ¨æ–­" << endl;
 	cin >> qq;
 	
-	cout << "***********************************ÏÂÃæ½øÈëÍÆ¶Ï**************************************" << endl;
+	cout << "***********************************ä¸‹é¢è¿›å…¥æ¨æ–­**************************************" << endl;
 	
-	getSample(rawX[10]);    //½«Ô­Ê¼Êı¾İµÄÒ»ÏîÍ¶Èë£¬µÃµ½ÕıÔò»¯½»¸¶¸øsampleList
-	cout << "*******************************³É¹¦»ñÈ¡´ı¼ì²âÑù±¾*************************************" << endl;
-	getSampleData(X);      //  ½«ÕıÔò»¯µÄÑµÁ·Ñù±¾¼ÓÉÏ´ı¼ì²âÑù±¾ÔÙ¼ÓÉÏÁ½¸ö×îÖµ£¬ÀëÉ¢»¯µÃµ½DiscreX
-	cout << "******************************************³É¹¦ÀëÉ¢»¯**********************************" << endl;
+	getSample(rawX[10]);    //å°†åŸå§‹æ•°æ®çš„ä¸€é¡¹æŠ•å…¥ï¼Œå¾—åˆ°æ­£åˆ™åŒ–äº¤ä»˜ç»™sampleList
+	cout << "*******************************æˆåŠŸè·å–å¾…æ£€æµ‹æ ·æœ¬*************************************" << endl;
+	getSampleData(X);      //  å°†æ­£åˆ™åŒ–çš„è®­ç»ƒæ ·æœ¬åŠ ä¸Šå¾…æ£€æµ‹æ ·æœ¬å†åŠ ä¸Šä¸¤ä¸ªæœ€å€¼ï¼Œç¦»æ•£åŒ–å¾—åˆ°DiscreX
+	cout << "******************************************æˆåŠŸç¦»æ•£åŒ–**********************************" << endl;
 	getSigma2();
-	cout << "******************************************³É¹¦»ñÈ¡sigma*******************************" << endl;
+	cout << "******************************************æˆåŠŸè·å–sigma*******************************" << endl;
 	loopStart(0);
 
-	cout << "**********************************Òì³£Â·¾¶*************************************" << endl;
+	cout << "**********************************å¼‚å¸¸è·¯å¾„*************************************" << endl;
 	showPath();
 	**/
 	
