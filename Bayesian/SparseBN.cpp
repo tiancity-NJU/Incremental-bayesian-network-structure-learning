@@ -23,15 +23,15 @@ void SBN(char* filename, int d, double penalty, double relation){
 	rawX = loadtxt(filename, dim);
 	
 	cout << "standard......................" << endl;
-	cout << "Ñù±¾´óĞ¡Îª...................." << rawX.size() << endl;
+	cout << "æ ·æœ¬å¤§å°ä¸º...................." << rawX.size() << endl;
 	X = rawX;
 	Scale(rawX, X);   //standard   0 mean and 1 variance
 
 
 
 	num = X.size();
-	B = Zero(dim - 1, dim);     //(p-1)*p µÄ
-	showB = Zero(dim - 1, dim);         //ÓÃÀ´ÏÔÊ¾ DAG ÓÃµÄ B£¬ÔÚÔ­Ê¼BÉÏÌÔÌ­¹ØÏµãĞÖµÒÔÏÂµÄ£¬²¢½øĞĞÏàÓ¦¼ôÖ¦£¬×ÜÖ® DAG ºÍÕâ¸ö showB ÊÇ¶ÔÓ¦µÄ£¬ºóÃæµÄÍÆÀíÒ²ÊÇ»ùÓÚÕâ¸öshowB£¬ ²»Ö±½Ó¶ÔB¼ôÖ¦ÊÇÏû³ıBÔÚÔöÁ¿¸üĞÂÊ±ºòµÄÎó²îÀÛ¼Æ
+	B = Zero(dim - 1, dim);     //(p-1)*p çš„
+	showB = Zero(dim - 1, dim);         //ç”¨æ¥æ˜¾ç¤º DAG ç”¨çš„ Bï¼Œåœ¨åŸå§‹Bä¸Šæ·˜æ±°å…³ç³»é˜ˆå€¼ä»¥ä¸‹çš„ï¼Œå¹¶è¿›è¡Œç›¸åº”å‰ªæï¼Œæ€»ä¹‹ DAG å’Œè¿™ä¸ª showB æ˜¯å¯¹åº”çš„ï¼Œåé¢çš„æ¨ç†ä¹Ÿæ˜¯åŸºäºè¿™ä¸ªshowBï¼Œ ä¸ç›´æ¥å¯¹Bå‰ªææ˜¯æ¶ˆé™¤Båœ¨å¢é‡æ›´æ–°æ—¶å€™çš„è¯¯å·®ç´¯è®¡
 	lamda1 = penalty*(0.11*num);    			//penalty
 	//lamda2 = (((num - 1)*(num - 1)*dim) / lamda1 - lamda1)*10;
 	
@@ -39,19 +39,19 @@ void SBN(char* filename, int d, double penalty, double relation){
 	lamda2 = 1000 * num;
 	
 	
-	cout << num << ' ' << dim << ' ' << lamda1 <<"µÃµ½µÄlamda2 "<<lamda2<<endl;
-	//vector<double> lamdaset=[Linspace(penalty,(dim*(num-1)*(num-1))/lamda1-lamda1,10)];   //set  lamda2 from lamda1 to (n-1)2 *p/lamda1 - lamda1   £¨±¸ÓÃ£¬ÔİÊ±Ã»ÓÃÉÏ£¬Á½¸ölamda×÷ÎªºóĞø²ÎÊıµ÷½Ú£©
+	cout << num << ' ' << dim << ' ' << lamda1 <<"å¾—åˆ°çš„lamda2 "<<lamda2<<endl;
+	//vector<double> lamdaset=[Linspace(penalty,(dim*(num-1)*(num-1))/lamda1-lamda1,10)];   //set  lamda2 from lamda1 to (n-1)2 *p/lamda1 - lamda1   ï¼ˆå¤‡ç”¨ï¼Œæš‚æ—¶æ²¡ç”¨ä¸Šï¼Œä¸¤ä¸ªlamdaä½œä¸ºåç»­å‚æ•°è°ƒèŠ‚ï¼‰
 
 	DAG = Zero(dim, dim);     //DAG
 	P = Zero(dim, dim);
 }
 
 
-vector<double> BFS(int i){      //   ËÙ¶ÈÒÑ¼ìÑé
-	//µÃµ½DAGÖĞiÎªÆğµãµÄ±Õ°ü 
+vector<double> BFS(int i){      //   é€Ÿåº¦å·²æ£€éªŒ
+	//å¾—åˆ°DAGä¸­iä¸ºèµ·ç‚¹çš„é—­åŒ… 
      
 	for (int j = 0; j < dim; j++)
-		P[i][j] = 0;    //i¶ÔÓ¦µÄĞĞÇå¿Õ£¬ÖØĞÂBFSÉú³É
+		P[i][j] = 0;    //iå¯¹åº”çš„è¡Œæ¸…ç©ºï¼Œé‡æ–°BFSç”Ÿæˆ
 	queue<double> q;
 	q.push(i);
 	while (!q.empty())
@@ -70,13 +70,13 @@ vector<double> BFS(int i){      //   ËÙ¶ÈÒÑ¼ìÑé
 	}
 	
 	
-	return P[i];    //¸üĞÂP¾ØÕóÒ»ÁĞ£¬È·±£±Õ°ü
+	return P[i];    //æ›´æ–°PçŸ©é˜µä¸€åˆ—ï¼Œç¡®ä¿é—­åŒ…
 }
 
 
-void refreshDAG(int i){                       //BCD ¶Ô50Î¬Ã¿Ò»Î¬µü´úµÄÊ±ºò¶¼Ë¢ĞÂ¶ÔÓ¦ĞĞµÄDAG£¬ÕâÑùBFS²ÅÓĞĞ§
+void refreshDAG(int i){                       //BCD å¯¹50ç»´æ¯ä¸€ç»´è¿­ä»£çš„æ—¶å€™éƒ½åˆ·æ–°å¯¹åº”è¡Œçš„DAGï¼Œè¿™æ ·BFSæ‰æœ‰æ•ˆ
 	for (int j = 0; j < dim; j++)
-		DAG[j][i] = 0;                              //¶ÔÓ¦ÁĞÇå¿Õ£¬ÖØĞÂË¢ĞÂÒ»±é    Îª±£ÏÕ£¬B²»¶ÏÔöÁ¿£¬DAGĞŞ¸ÄÊ±Ã¿´ÎÈ«²¿Ë¢ĞÂ
+		DAG[j][i] = 0;                              //å¯¹åº”åˆ—æ¸…ç©ºï¼Œé‡æ–°åˆ·æ–°ä¸€é    ä¸ºä¿é™©ï¼ŒBä¸æ–­å¢é‡ï¼ŒDAGä¿®æ”¹æ—¶æ¯æ¬¡å…¨éƒ¨åˆ·æ–°
 
 	for (int j = 0; j < (dim - 1); j++)
 	{
@@ -105,7 +105,7 @@ vector<double> getBij(int i, int j)  // get Bi / j    dim is(p - 2) * 1
 
 
 
-void getXij(deque<vector<double>>&result, int dim1, int dim2)      //ÎÒÃÇ×î¶àÖ»ĞèÒªÒÆ³ıÁ½ÁĞ         Õâ¸öËÙ¶È±Èpython¿ì£¬¶ÔÓÚÎåÍòÊı¾İ  Õâ¸ö6ms python14ms
+void getXij(deque<vector<double>>&result, int dim1, int dim2)      //æˆ‘ä»¬æœ€å¤šåªéœ€è¦ç§»é™¤ä¸¤åˆ—         è¿™ä¸ªé€Ÿåº¦æ¯”pythonå¿«ï¼Œå¯¹äºäº”ä¸‡æ•°æ®  è¿™ä¸ª6ms python14ms
 {
 	int k;
 	if (dim1 < dim2){ k = dim1; dim1 = dim2; dim2 = k; }
@@ -126,33 +126,27 @@ void Shooting(int i, int shootIter)
 	GetCol_S(X, i,xi);
 
 	
-	for (int t = 0; t < shootIter; t++)     //×î´óµü´ú´ÎÊı
+	for (int t = 0; t < shootIter; t++)     //æœ€å¤§è¿­ä»£æ¬¡æ•°
 	{
 		vector<double>LastColB;
 		GetCol_M(B, i, LastColB);
-		double temp = Norm(LastColB);     //Ã¿´ÎÑ­»·°ÑÉÏÒ»´ÎµÄBi ´æµ½tempÖĞ
-		for (int j = 0; j < dim; j++)    //J µÄÃ¿Ò»ÌËÑ­»·£¬¸üĞÂB£¨ (p-1)*p  £©µÄÒ»ÁĞ £¬ ¼´ p-1 ¸öÔªËØ£¬ ÌØ±ğµÄ£¬µ±j>iµÄÊ±ºò£¬Ë÷ÒıÒª-1£¬ÒòÎªÕ¼¾İÁË±¾À´iµÄÎ»ÖÃ£¬²Å±ä³Ép-1Î¬
+		double temp = Norm(LastColB);     //æ¯æ¬¡å¾ªç¯æŠŠä¸Šä¸€æ¬¡çš„Bi å­˜åˆ°tempä¸­
+		for (int j = 0; j < dim; j++)    //J çš„æ¯ä¸€è¶Ÿå¾ªç¯ï¼Œæ›´æ–°Bï¼ˆ (p-1)*p  ï¼‰çš„ä¸€åˆ— ï¼Œ å³ p-1 ä¸ªå…ƒç´ ï¼Œ ç‰¹åˆ«çš„ï¼Œå½“j>içš„æ—¶å€™ï¼Œç´¢å¼•è¦-1ï¼Œå› ä¸ºå æ®äº†æœ¬æ¥içš„ä½ç½®ï¼Œæ‰å˜æˆp-1ç»´
 		{
 			
 			if (j == i)
-				continue;    //±£Ö¤Ã¿´ÎjµÄµü´úÔËËã (p-1) ´Î
+				continue;    //ä¿è¯æ¯æ¬¡jçš„è¿­ä»£è¿ç®— (p-1) æ¬¡
 		    
-			//ÕâÊÇ   n*(dim-2)*(dim-2)*1µÄÂıËÙ¼ÆËã£¬ÏÖÔÚÓÃµÄDot_vv½øĞĞÁËÓÅ»¯£¬ÓÖ½øĞĞÁË30%µÄ¼ÓËÙ
-			//deque<vector<double>> test(X);  getXij(test, i, j);     //   test ÊÇXÈ¥³ıÁ½ÁĞÒÔºóµÄ½á¹û      20ms
+			//è¿™æ˜¯   n*(dim-2)*(dim-2)*1çš„æ…¢é€Ÿè®¡ç®—ï¼Œç°åœ¨ç”¨çš„Dot_vvè¿›è¡Œäº†ä¼˜åŒ–ï¼Œåˆè¿›è¡Œäº†30%çš„åŠ é€Ÿ
+			//deque<vector<double>> test(X);  getXij(test, i, j);     //   test æ˜¯Xå»é™¤ä¸¤åˆ—ä»¥åçš„ç»“æœ      20ms
 			//vector <double>xb;  Dot_vv(test, getBij(i, j), xb);      //50ms
 
-			vector<double> tmp;
-			
-			
+			vector<double> tmp;	
 
-			vector<double>xb;  Dot_vv(X, getBij(i, j), xb, i, j);
-			
-			
-			
+			vector<double>xb;  Dot_vv(X, getBij(i, j), xb, i, j);	
 
 			for (unsigned k = 0; k < xi.size(); k++)
-				tmp.push_back(xi[k] - xb[k]);			 //(n*1) - (n*48).*(48*1)    µÃµ½µÄ·Ö×Ó tmp shape is £¨n*1£©
-
+				tmp.push_back(xi[k] - xb[k]);			 //(n*1) - (n*48).*(48*1)    å¾—åˆ°çš„åˆ†å­ tmp shape is ï¼ˆn*1ï¼‰
 
 			vector<double> xj;
 			GetCol_S(X, j,xj);     					//xj  (n*1)
@@ -160,15 +154,15 @@ void Shooting(int i, int shootIter)
 
 			double Denominator = Dot_av(xi, xi);
 
-			if (Denominator == 0){             //  ¸ö±ğÌØÕ÷×Ô³ËÈ«Îª0£¬È·±£·ÖÄ¸²»»á±äÎª0
+			if (Denominator == 0){             //  ä¸ªåˆ«ç‰¹å¾è‡ªä¹˜å…¨ä¸º0ï¼Œç¡®ä¿åˆ†æ¯ä¸ä¼šå˜ä¸º0
 				part1 = part1 / num;
 			}
 			else{
-				part1 = part1 / Denominator;                //¸Ãpart1 ¶ÔÓ¦BµÄµÚÒ»²¿·Ö
+				part1 = part1 / Denominator;                //è¯¥part1 å¯¹åº”Bçš„ç¬¬ä¸€éƒ¨åˆ†
 			}
 
 
-			//  part2²»ÔõÃ´ºÄÊ±¼ä
+			//  part2ä¸æ€ä¹ˆè€—æ—¶é—´
 			double part2;
 			if (Denominator == 0){
 				part2 = (lamda1 + lamda2*P[i][j]) / num;
@@ -178,9 +172,9 @@ void Shooting(int i, int shootIter)
 			}
 
 
-			//cout << "Á½¸öpart " << part1 << "    " << part2 <<"  ´ËÊ±µÄPij  "<<P[i][j]<<endl;
+			//cout << "ä¸¤ä¸ªpart " << part1 << "    " << part2 <<"  æ­¤æ—¶çš„Pij  "<<P[i][j]<<endl;
 
-			if (P[i][j] == 1 && abs(part1) > part2)  cout << "*************³öÏÖÁË±Ü»·³Í·£Ïî²»¹»µÄÇé¿ö£¡£¡£¡£¡ÊäÈëÈÎÒâÊı×Ö¼ÌĞøÔËĞĞ********************" << endl;
+			if (P[i][j] == 1 && abs(part1) > part2)  cout << "*************å‡ºç°äº†é¿ç¯æƒ©ç½šé¡¹ä¸å¤Ÿçš„æƒ…å†µï¼ï¼ï¼ï¼è¾“å…¥ä»»æ„æ•°å­—ç»§ç»­è¿è¡Œ********************" << endl;
 
 			double sign = Sign(part1);
 
@@ -191,7 +185,7 @@ void Shooting(int i, int shootIter)
 				result = 0;
 			else
 				result = (fabs(part1) - part2)*sign;
-			// ÔÚ shooting ÑµÁ·ÀïÃæÏÈ²»¹Ü¹ØÏµãĞÖµµÈÎÊÌâ
+			// åœ¨ shooting è®­ç»ƒé‡Œé¢å…ˆä¸ç®¡å…³ç³»é˜ˆå€¼ç­‰é—®é¢˜
 			if (j < i)
 				B[j][i] = result;
 			else
@@ -200,9 +194,9 @@ void Shooting(int i, int shootIter)
 		}
 		GetCol_M(B, i, LastColB);
 		double newtemp = Norm(LastColB);
-		std::cout << "shooting iter " << i << "£¬Bi->: " << newtemp << endl;
+		std::cout << "shooting iter " << i << "ï¼ŒBi->: " << newtemp << endl;
 		
-		if (fabs(newtemp - temp) < 0.01)      //Èç¹û²îÖµĞ¡ÓÚ0.01 ÔòÌáÇ°ÍË³öµü´ú£¬×î¶à100´Îµü´ú
+		if (fabs(newtemp - temp) < 0.01)      //å¦‚æœå·®å€¼å°äº0.01 åˆ™æå‰é€€å‡ºè¿­ä»£ï¼Œæœ€å¤š100æ¬¡è¿­ä»£
 			break;
 	}
 
@@ -213,23 +207,23 @@ void BCD(int BCDIter)
 {
 	for (int t = 0; t < BCDIter; t++)
 	{
-		cout << "½øÈëÏÂÒ»¸öBCD" << endl;
-		cout << "½øÈëµÚ" << t << "ÂÖBCDµü´ú................." << endl;
-		for (int i = 0; i < dim; i++)		 //·´¸´µü´ú¸üĞÂ Bi
+		cout << "è¿›å…¥ä¸‹ä¸€ä¸ªBCD" << endl;
+		cout << "è¿›å…¥ç¬¬" << t << "è½®BCDè¿­ä»£................." << endl;
+		for (int i = 0; i < dim; i++)		 //åå¤è¿­ä»£æ›´æ–° Bi
 		{
 			int64_t start, end;
 			start = GetTime();
 			vector<double> Pij = BFS(i);
-			cout << "µÚ" << t << "ÂÖBCDµÄµÚ" << i << "Î¬µü´ú............." << endl;
+			cout << "ç¬¬" << t << "è½®BCDçš„ç¬¬" << i << "ç»´è¿­ä»£............." << endl;
 			Shooting(i, 100);
-			refreshDAG(i);    //¸üĞÂDAG ÖĞ i  ¶ÔÓ¦µÄÄÇÒ»ÁĞ
+			refreshDAG(i);    //æ›´æ–°DAG ä¸­ i  å¯¹åº”çš„é‚£ä¸€åˆ—
 
 			int sss = 0;
 			for (int k = 0; k < dim; k++)
 			{
 				if (DAG[k][i] == 1) sss++;
 			}
-			cout << "¸ÃÁĞÏÖÔÚÓĞ·ÇÁãÖµ" << sss << "¸ö" << endl;
+			cout << "è¯¥åˆ—ç°åœ¨æœ‰éé›¶å€¼" << sss << "ä¸ª" << endl;
 
 			for (int k = 0; k < dim - 1;k++)
 			{
@@ -247,13 +241,13 @@ void BCD(int BCDIter)
 
 
 
-void CheckAndPrune()  // ¶Ô B ¼ôÖ¦£¬±ÜÃâ³É»·    ¶ÔÓÚÒ»¸ö±È½ÏºÏÊÊµÄãĞÖµÉè¶¨£¬¿ÉÒÔ±£Ö¤²»»á³É»·£¬¸Ãº¯ÊıÊÇÒÔ·ÀÍòÒ»           »òÕß É¾³ı¹ØÏµãĞÖµÒÔÏÂµÄ±ß£¬¼õÉÙÏ¡Êè¶È£¬µ«Ò²Ò»¶¨³Ì¶ÈÏ÷¼õÁË¾«¶È
+void CheckAndPrune()  // å¯¹ B å‰ªæï¼Œé¿å…æˆç¯    å¯¹äºä¸€ä¸ªæ¯”è¾ƒåˆé€‚çš„é˜ˆå€¼è®¾å®šï¼Œå¯ä»¥ä¿è¯ä¸ä¼šæˆç¯ï¼Œè¯¥å‡½æ•°æ˜¯ä»¥é˜²ä¸‡ä¸€           æˆ–è€… åˆ é™¤å…³ç³»é˜ˆå€¼ä»¥ä¸‹çš„è¾¹ï¼Œå‡å°‘ç¨€ç–åº¦ï¼Œä½†ä¹Ÿä¸€å®šç¨‹åº¦å‰Šå‡äº†ç²¾åº¦
 {
 	//vector<vector<double>> showB;
 	for (int i = 0; i < (dim - 1); i++)
 	{
 		for (int j = 0; j < dim; j++)
-			showB[i][j] = B[i][j];              // ÏÈ°ÑÔ­Ê¼µÄ B ÒÆÖ²µ½ showB ÉÏÀ´
+			showB[i][j] = B[i][j];              // å…ˆæŠŠåŸå§‹çš„ B ç§»æ¤åˆ° showB ä¸Šæ¥
 	}
 
 
@@ -269,20 +263,20 @@ void CheckAndPrune()  // ¶Ô B ¼ôÖ¦£¬±ÜÃâ³É»·    ¶ÔÓÚÒ»¸ö±È½ÏºÏÊÊµÄãĞÖµÉè¶¨£¬¿ÉÒÔ
 	}
 
 
-	for (int i = 0; i < (dim - 1); i++)  // ¹ØÏµãĞÖµÅĞ¶¨
+	for (int i = 0; i < (dim - 1); i++)  // å…³ç³»é˜ˆå€¼åˆ¤å®š
 	{
 		for (int j = 0; j < dim; j++)
 			if (fabs(showB[i][j]) < relationThreshold)
 				showB[i][j] = 0;
 	}
 
-	for (int i = 0; i < dim; i++)		// ÏÈÇå¿Õ  DAG
+	for (int i = 0; i < dim; i++)		// å…ˆæ¸…ç©º  DAG
 	{
 		for (int j = 0; j < dim; j++)
 			DAG[i][j] = 0;
 	}
 
-	for (int i = 0; i < (dim - 1); i++)		 // ×îºóÔÙÖØĞÂË¢ĞÂÒ»±é DAG
+	for (int i = 0; i < (dim - 1); i++)		 // æœ€åå†é‡æ–°åˆ·æ–°ä¸€é DAG
 	{
 		for (int j = 0; j < dim; j++)
 		{
@@ -299,42 +293,42 @@ void CheckAndPrune()  // ¶Ô B ¼ôÖ¦£¬±ÜÃâ³É»·    ¶ÔÓÚÒ»¸ö±È½ÏºÏÊÊµÄãĞÖµÉè¶¨£¬¿ÉÒÔ
 
 
 
-void Train()	 // ÓÃ BCD ÑµÁ·ĞÂµÄ B, ¼ì²é»·ºÍ¹ØÏµãĞÖµ¼ôÖ¦£¬¸üĞÂ¶şÎ¬¾ØÕó DAG
+void Train()	 // ç”¨ BCD è®­ç»ƒæ–°çš„ B, æ£€æŸ¥ç¯å’Œå…³ç³»é˜ˆå€¼å‰ªæï¼Œæ›´æ–°äºŒç»´çŸ©é˜µ DAG
 {
 	time_t start, end;
 	time(&start);
-	BCD(10);  // ÑµÁ·¹ı³ÌÖĞ²»¶Ô B ºÍ DAG¹ı¶à¸ÉÔ¤£¬½ö½öÎ¬³ÖÍ¬²½£¬ÑµÁ·ºÃÁË½á¹¹ÒÔºó¿ªÊ¼¼ì²é»·²¢¼ôÖ¦
+	BCD(10);  // è®­ç»ƒè¿‡ç¨‹ä¸­ä¸å¯¹ B å’Œ DAGè¿‡å¤šå¹²é¢„ï¼Œä»…ä»…ç»´æŒåŒæ­¥ï¼Œè®­ç»ƒå¥½äº†ç»“æ„ä»¥åå¼€å§‹æ£€æŸ¥ç¯å¹¶å‰ªæ
 	time(&end);
-	cout << "BCD½áÊø" << endl;
+	cout << "BCDç»“æŸ" << endl;
 	CheckAndPrune();
-	cout << "¼ôÖ¦½áÊø" << endl;
-	cout << "ÑµÁ·Ê±¼ä..................................................." << difftime(end, start) << "Ãë" << endl;
+	cout << "å‰ªæç»“æŸ" << endl;
+	cout << "è®­ç»ƒæ—¶é—´..................................................." << difftime(end, start) << "ç§’" << endl;
 }
 
 
 
-void update(vector<double> sample)     //¿ÉÔöÁ¿»¯
+void update(vector<double> sample)     //å¯å¢é‡åŒ–
 {
 	rawX.pop_front();
-	rawX.push_back(sample);   // ½«sample·â×°³ÉÒ»ĞĞ£¬¼´½«rawXµÚÒ»ĞĞÉ¾ÁËÔÙ²¹ĞÂÑù±¾µ½×îºóÒ»ĞĞ
+	rawX.push_back(sample);   // å°†sampleå°è£…æˆä¸€è¡Œï¼Œå³å°†rawXç¬¬ä¸€è¡Œåˆ äº†å†è¡¥æ–°æ ·æœ¬åˆ°æœ€åä¸€è¡Œ
 	Scale(rawX,X);
 
 	printf("try to update..........\n");
 
-	BCD(1);				// ÔöÁ¿ÒÔºó¸üĞÂDAG
-	CheckAndPrune();   //¶ÔĞÂµÄ B ½øĞĞ¼ì²é£¬²¢¸ù¾İ¹ØÏµãĞÖµµÈ²ÎÊı¸üĞÂ B ºÍ DAG
+	BCD(1);				// å¢é‡ä»¥åæ›´æ–°DAG
+	CheckAndPrune();   //å¯¹æ–°çš„ B è¿›è¡Œæ£€æŸ¥ï¼Œå¹¶æ ¹æ®å…³ç³»é˜ˆå€¼ç­‰å‚æ•°æ›´æ–° B å’Œ DAG
 
 	printf("update end...............\n");
 }
 
-/****************************************´òÓ¡***************************************************/
-void printDAG()  // Êä³ö DAG
+/****************************************æ‰“å°***************************************************/
+void printDAG()  // è¾“å‡º DAG
 {
 	for (int i = 0; i < dim; i++)
 	{
 		for (int j = 0; j < dim; j++)
 		{
-			if (DAG[i][j] == 1)			// print('´æÔÚ±ß ', i + 1, j + 1)
+			if (DAG[i][j] == 1)			// print('å­˜åœ¨è¾¹ ', i + 1, j + 1)
 				cout << "G[" << i+1 << "]" << "[" << j+1 << "]" << "= 1" << endl;
 			//print('G[', i, ',', j, ']=1');
 		}
@@ -363,13 +357,13 @@ void printShowB()
 }
 
 
-double Expection(int x)   // ²ÎÊı x µÄÆÚÍû
+double Expection(int x)   // å‚æ•° x çš„æœŸæœ›
 {
 	vector<double>Xx;
 	GetCol_S(X, x,Xx);
 	double total = 0;
 	for (unsigned i = 0; i < Xx.size(); i++)
-		total += Xx[i];  // ÀÛ¼ÓµÚ¶şÁĞ
+		total += Xx[i];  // ç´¯åŠ ç¬¬äºŒåˆ—
 	return total / num;
 }
 
@@ -379,18 +373,18 @@ double Cov(int x, int y)
 	vector<double>Xx, Xy;
 	GetCol_S(X, x,Xx);
 	GetCol_S(X, y,Xy);
-	for (unsigned i = 0; i < Xy.size(); i++)			//µã³Ëx,yÁĞ
+	for (unsigned i = 0; i < Xy.size(); i++)			//ç‚¹ä¹˜x,yåˆ—
 		mul.push_back(Xx[i] * Xy[i]);
 	//mul=self.X[:,x]*self.X[:,y]
 	double total = 0;
-	for (unsigned i = 0; i < mul.size(); i++)		//mulÇóºÍ
+	for (unsigned i = 0; i < mul.size(); i++)		//mulæ±‚å’Œ
 		total += mul[i];
-	total = total / num;   //  ¼ÆËã E[XY]
+	total = total / num;   //  è®¡ç®— E[XY]
 	double covXY = total - Expection(x)*Expection(y);
 	return covXY;
 }
 
-double Parameter(int x){         //¼ÆËã P(X| u1 u2 u3 u4.......) µÄÏßĞÔ¸ßË¹Ëù¶ÔÓ¦µÄ·½²î
+double Parameter(int x){         //è®¡ç®— P(X| u1 u2 u3 u4.......) çš„çº¿æ€§é«˜æ–¯æ‰€å¯¹åº”çš„æ–¹å·®
 	double temp = 0;
 	int posi = 0, posj = 0;
 	for (int i = 0; i < dim - 1; i++)
