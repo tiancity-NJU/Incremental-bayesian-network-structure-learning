@@ -17,15 +17,9 @@
 #include<Windows.h>
 using namespace std;
 
-
-
-
 typedef __int64 int64_t;
 typedef long long int64t;
 int64_t GetTime();
-
-
-
 
 
 extern vector<double>meanList;
@@ -48,10 +42,9 @@ void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double
 double Dot_av(const vector<double>&a, const vector<double>&b);
 void GetCol_S(const deque<vector<double>>&data, int d, vector<double>&result);
 void GetCol_M(const vector<vector<double>>&data, int d, vector<double>&result);
-void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double>&result, int col1, int col2); //½«¾ØÕóaµÄcol1ºÍcol2ÁĞÅÅ³ı£¬È»ºóºÍb½øĞĞ¾ØÕó³Ë·¨£¬½á¹û·Åµ½resultÀïÃæ
+void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double>&result, int col1, int col2); //å°†çŸ©é˜µaçš„col1å’Œcol2åˆ—æ’é™¤ï¼Œç„¶åå’Œbè¿›è¡ŒçŸ©é˜µä¹˜æ³•ï¼Œç»“æœæ”¾åˆ°resulté‡Œé¢
 
-/*ÍÆÀíµÄÏà¹Ø¸¨Öúº¯Êı*/
+/*æ¨ç†çš„ç›¸å…³è¾…åŠ©å‡½æ•°*/
 vector<vector<int>>Combinations(vector<int>list, int len);
-
 
 #endif
