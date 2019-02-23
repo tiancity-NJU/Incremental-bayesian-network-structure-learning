@@ -1,18 +1,13 @@
 #include"utils.h"
-
 using namespace std;
 
-
-
-vector<double>meanList;             //ÑµÁ·Ñù±¾¾ùÖµ
-vector<double>standardList;         //ÑµÁ·Ñù±¾·½²î
-
-
+vector<double>meanList;             //è®­ç»ƒæ ·æœ¬å‡å€¼
+vector<double>standardList;         //è®­ç»ƒæ ·æœ¬æ–¹å·®
 
 int64_t GetTime()
 {
 #ifdef _WIN32
-	// ´Ó1601Äê1ÔÂ1ÈÕ0:0:0:000µ½1970Äê1ÔÂ1ÈÕ0:0:0:000µÄÊ±¼ä(µ¥Î»100ns)
+	// ä»1601å¹´1æœˆ1æ—¥0:0:0:000åˆ°1970å¹´1æœˆ1æ—¥0:0:0:000çš„æ—¶é—´(å•ä½100ns)
 #define EPOCHFILETIME   (116444736000000000UL)
 	FILETIME ft;
 	LARGE_INTEGER li;
@@ -20,7 +15,7 @@ int64_t GetTime()
 	GetSystemTimeAsFileTime(&ft);
 	li.LowPart = ft.dwLowDateTime;
 	li.HighPart = ft.dwHighDateTime;
-	// ´Ó1970Äê1ÔÂ1ÈÕ0:0:0:000µ½ÏÖÔÚµÄÎ¢ÃëÊı(UTCÊ±¼ä)
+	// ä»1970å¹´1æœˆ1æ—¥0:0:0:000åˆ°ç°åœ¨çš„å¾®ç§’æ•°(UTCæ—¶é—´)
 	tt = (li.QuadPart - EPOCHFILETIME) / 10;
 	return tt;
 #else
@@ -32,9 +27,7 @@ int64_t GetTime()
 }
 
 
-
-
-/*¶¨ÒåÒ»Ğ©¸¨ÖúĞÔº¯Êı*/
+/*å®šä¹‰ä¸€äº›è¾…åŠ©æ€§å‡½æ•°*/
 
 double S2D(const string str)
 {
@@ -56,20 +49,20 @@ deque<vector<double>> loadtxt(const char* filename, int d)
 	deque<vector<double>> strArray;		//RawX
 
 	string FeatureName;
-	getline(inFile, FeatureName);           //Èç¹ûµÚÒ»ĞĞÊÇÌØÕ÷Ãû£¬Ôòµ÷ÓÃ£¬´Ë´¦É¾³ıµÚÒ»ĞĞ
+	getline(inFile, FeatureName);           //å¦‚æœç¬¬ä¸€è¡Œæ˜¯ç‰¹å¾åï¼Œåˆ™è°ƒç”¨ï¼Œæ­¤å¤„åˆ é™¤ç¬¬ä¸€è¡Œ
 
 
-	while (getline(inFile, lineStr))	//ÒÔĞĞÎªµ¥Î»¶ÁÈëlineStr
+	while (getline(inFile, lineStr))	//ä»¥è¡Œä¸ºå•ä½è¯»å…¥lineStr
 	{
 		stringstream ss(lineStr);
 		string str;
-		vector<double> lineArray;  	//RawXµÄĞĞÊı¾İ
-		while (getline(ss, str, ','))	//ÒÔ£¬Îª·Ö¸î¶ÁssÈëstr
+		vector<double> lineArray;  	//RawXçš„è¡Œæ•°æ®
+		while (getline(ss, str, ','))	//ä»¥ï¼Œä¸ºåˆ†å‰²è¯»sså…¥str
 		{
 			lineArray.push_back(S2D(str));
 
 		}
-		lineArray.erase(lineArray.begin());     //È¥³ıµÚÒ»ĞĞ
+		lineArray.erase(lineArray.begin());     //å»é™¤ç¬¬ä¸€è¡Œ
 		strArray.push_back(lineArray);
 	}
 	return strArray;
@@ -86,12 +79,12 @@ vector<vector<double>> loadShowB(const char* filename, int d)
 	string lineStr;
 	vector<vector<double>> strArray;		//RawX
 
-	while (getline(inFile, lineStr))	//ÒÔĞĞÎªµ¥Î»¶ÁÈëlineStr
+	while (getline(inFile, lineStr))	//ä»¥è¡Œä¸ºå•ä½è¯»å…¥lineStr
 	{
 		stringstream ss(lineStr);
 		string str;
-		vector<double> lineArray;  	//RawXµÄĞĞÊı¾İ
-		while (getline(ss, str, ','))	//ÒÔ£¬Îª·Ö¸î¶ÁssÈëstr
+		vector<double> lineArray;  	//RawXçš„è¡Œæ•°æ®
+		while (getline(ss, str, ','))	//ä»¥ï¼Œä¸ºåˆ†å‰²è¯»sså…¥str
 		{
 			lineArray.push_back(S2D(str));
 
@@ -121,7 +114,7 @@ double Shape(vector<double> lineStr)
 }
 
 
-void GetColData(const deque<vector<double>>&rawX, unsigned i,vector<double>&data)	//ÎªScale·şÎñ
+void GetColData(const deque<vector<double>>&rawX, unsigned i,vector<double>&data)	//ä¸ºScaleæœåŠ¡
 {
 	data.clear();
 	for (unsigned j = 0; j < rawX.size(); j++)
@@ -130,7 +123,7 @@ void GetColData(const deque<vector<double>>&rawX, unsigned i,vector<double>&data
 }
 
 
-double Average(vector<double>data)	//ÎªScale·şÎñ
+double Average(vector<double>data)	//ä¸ºScaleæœåŠ¡
 {
 	double sum = 0;
 	for (unsigned i = 0; i < data.size(); i++)
@@ -142,7 +135,7 @@ double Average(vector<double>data)	//ÎªScale·şÎñ
 }
 
 
-double Standard(vector<double>data, double mean)	//ÎªScale·şÎñ
+double Standard(vector<double>data, double mean)	//ä¸ºScaleæœåŠ¡
 {
 	double sum = 0;
 	for (unsigned i = 0; i < data.size(); i++)
@@ -153,7 +146,7 @@ double Standard(vector<double>data, double mean)	//ÎªScale·şÎñ
 }
 
 
-//   ÕıÔò»¯½Ó¿Ú
+//   æ­£åˆ™åŒ–æ¥å£
 void Scale(const deque<vector<double>>& rawX,deque<vector<double>>&X)
 {
 	if (X.size() <= 0){
@@ -222,7 +215,7 @@ void Scale(const deque<vector<double>>& rawX,deque<vector<double>>&X)
 }
 
 
-//   Éú³Éx*yÎ¬µÄ0¾ØÕó
+//   ç”Ÿæˆx*yç»´çš„0çŸ©é˜µ
 vector<vector<double>> Zero(int x, int y)
 {
 	vector<double> temp(y, 0);
@@ -231,7 +224,7 @@ vector<vector<double>> Zero(int x, int y)
 }
 
 
-// É¾³ı¶ÔÓ¦ĞĞ£¬ÏÂ±ê´Ó0¿ªÊ¼
+// åˆ é™¤å¯¹åº”è¡Œï¼Œä¸‹æ ‡ä»0å¼€å§‹
 void RemoveCol(deque<vector<double>>&data, int d)
 {
 	for (unsigned i = 0; i < data.size(); i++)
@@ -241,7 +234,7 @@ void RemoveCol(deque<vector<double>>&data, int d)
 }
 
 
-void RemoveCols(deque<vector<double>>&data, int dim1, int dim2)      //ÎÒÃÇ×î¶àÖ»ĞèÒªÒÆ³ıÁ½ÁĞ
+void RemoveCols(deque<vector<double>>&data, int dim1, int dim2)      //æˆ‘ä»¬æœ€å¤šåªéœ€è¦ç§»é™¤ä¸¤åˆ—
 {
 	int k;
 	if (dim1 < dim2){ k = dim1; dim1 = dim2; dim2 = k; }
@@ -260,7 +253,7 @@ void RemoveElem(const vector<vector<double>>& B, int i, int j,vector<double>&res
 {    
 	result.clear();
 	for (unsigned k = 0; k < B.size(); k++){
-		result.push_back(B[k][i]);     //»ñÈ¡µÚiÁĞ
+		result.push_back(B[k][i]);     //è·å–ç¬¬iåˆ—
 	}
 	if (j < i){
 		result.erase(result.begin() + j);
@@ -281,10 +274,9 @@ double Norm(vector<double> sample)
 	return sqrt(sum);
 }
 
+/*ä¸‹é¢æ˜¯ä¸¤ä¸ªDotæ“ä½œçš„é‡è½½å‡½æ•°ï¼Œä¸€ä¸ªæ˜¯é’ˆå¯¹ä¸¤ä¸ªéƒ½æ˜¯å‘é‡çš„ï¼Œè¿”å›ä¸€ä¸ªdoubleï¼Œè¿˜æœ‰ä¸€ä¸ªæ˜¯é’ˆå¯¹æ•°ç»„å’Œå‘é‡çš„ï¼Œè¿”å›ä¸€ä¸ªå‘é‡ï¼Œä¸¤è€…éƒ½æ˜¯çŸ©é˜µä¹˜æ³•çš„ç‰¹æ®Šæƒ…å†µ*/
 
-/*ÏÂÃæÊÇÁ½¸öDot²Ù×÷µÄÖØÔØº¯Êı£¬Ò»¸öÊÇÕë¶ÔÁ½¸ö¶¼ÊÇÏòÁ¿µÄ£¬·µ»ØÒ»¸ödouble£¬»¹ÓĞÒ»¸öÊÇÕë¶ÔÊı×éºÍÏòÁ¿µÄ£¬·µ»ØÒ»¸öÏòÁ¿£¬Á½Õß¶¼ÊÇ¾ØÕó³Ë·¨µÄÌØÊâÇé¿ö*/
-
-//        n*p   *     p*1 µÄÇé¿ö£¬·µ»ØÒ»¸ödoubleÏòÁ¿result Î¬¶ÈÎªn*1
+//        n*p   *     p*1 çš„æƒ…å†µï¼Œè¿”å›ä¸€ä¸ªdoubleå‘é‡result ç»´åº¦ä¸ºn*1
 //     Dot_vv(array a,vector b,vector result)
 void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double>&result)
 {
@@ -294,7 +286,7 @@ void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double
 		double sum = 0.0;
 		if (a[i].size() != b.size()){
 			cerr << "a[i] & b don't have same dim !" << endl;
-			exit(1);   //  Ç¿ÖÆÍË³ö
+			exit(1);   //  å¼ºåˆ¶é€€å‡º
 		}
 
 		for (unsigned j = 0; j < a[i].size(); j++)
@@ -308,9 +300,7 @@ void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double
 
 }
 
-
-
-void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double>&result,int col1,int col2) //½«¾ØÕóaµÄcol1ºÍcol2ÁĞÅÅ³ı£¬È»ºóºÍb½øĞĞ¾ØÕó³Ë·¨£¬½á¹û·Åµ½resultÀïÃæ
+void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double>&result,int col1,int col2) //å°†çŸ©é˜µaçš„col1å’Œcol2åˆ—æ’é™¤ï¼Œç„¶åå’Œbè¿›è¡ŒçŸ©é˜µä¹˜æ³•ï¼Œç»“æœæ”¾åˆ°resulté‡Œé¢
 {
 	result.clear();
 	for (unsigned i = 0; i < a.size(); i++)
@@ -336,8 +326,7 @@ void Dot_vv(const deque<vector<double>>&a, const vector<double>&b, vector<double
 	}
 }
 
-
-//  ·µ»ØÊÇ¸öÖµ£¬ËÙ¶ÈÓ°Ïì²»´ó
+//  è¿”å›æ˜¯ä¸ªå€¼ï¼Œé€Ÿåº¦å½±å“ä¸å¤§
 double Dot_av(const vector<double>&a, const vector<double>&b)
 {
 	if (a.size() != b.size())
@@ -356,26 +345,22 @@ double Dot_av(const vector<double>&a, const vector<double>&b)
 	return sum;
 }
 
-
-/*½â¾öpythonÖĞ±ÈÈç  B[:,i]µÄÇé¿ö£¬¼´È¡Ä³¸öÊı×éµÄµÚiÁĞ,Í¬ÑùÖØÔØÁ½¸öÇé¿ö£¬Ò»¸öÊÇÕë¶ÔÑù±¾µÄ£¬Ò»¸öÊÇÕë¶ÔÀàËÆÓÚB,PÕâÑùÊı×éµÄ £¬dim´Ó0¿ªÊ¼ */
+/*è§£å†³pythonä¸­æ¯”å¦‚  B[:,i]çš„æƒ…å†µï¼Œå³å–æŸä¸ªæ•°ç»„çš„ç¬¬iåˆ—,åŒæ ·é‡è½½ä¸¤ä¸ªæƒ…å†µï¼Œä¸€ä¸ªæ˜¯é’ˆå¯¹æ ·æœ¬çš„ï¼Œä¸€ä¸ªæ˜¯é’ˆå¯¹ç±»ä¼¼äºB,Pè¿™æ ·æ•°ç»„çš„ ï¼Œdimä»0å¼€å§‹ */
 void GetCol_S(const deque<vector<double>>&data, int d,vector<double>&result)
 {
 	result.clear();
-	for (unsigned i = 0; i < data.size(); i++)     //±éÀúÃ¿Ò»¸öÑù±¾
+	for (unsigned i = 0; i < data.size(); i++)     //éå†æ¯ä¸€ä¸ªæ ·æœ¬
 		result.push_back(*(data[i].begin() + d));
 
 }
 
-
 void GetCol_M(const vector<vector<double>>&data, int d, vector<double>&result)
 {
 	result.clear();
-	for (unsigned i = 0; i < data.size(); i++){     //±éÀúÃ¿Ò»¸öÑù±¾
+	for (unsigned i = 0; i < data.size(); i++){     //éå†æ¯ä¸€ä¸ªæ ·æœ¬
 		result.push_back(data[i][d]);
 	}
 }
-
-
 
 void comb(vector<int>list,int s, int n, int m,vector<vector<int>>&result,vector<int>&condition)
 {
@@ -396,16 +381,14 @@ void comb(vector<int>list,int s, int n, int m,vector<vector<int>>&result,vector<
 	comb(list,s + 1, n, m,result,condition);
 }
 
-
-
-vector<vector<int>>Combinations(vector<int>list, int len){     //»ñµÃlistÖĞ³¤¶ÈÎªlenµÄ×éºÏĞòÁĞ
+vector<vector<int>>Combinations(vector<int>list, int len){     //è·å¾—listä¸­é•¿åº¦ä¸ºlençš„ç»„åˆåºåˆ—
 
 		int i;
 		vector<vector<int>>result;
 		vector<int>condition;
 		if (len > list.size())
 		{
-			cerr << "ÊäÈë³¤¶È¹ı³¤!" << endl;
+			cerr << "è¾“å…¥é•¿åº¦è¿‡é•¿!" << endl;
 			//return result;
 			exit(1);
 		}
